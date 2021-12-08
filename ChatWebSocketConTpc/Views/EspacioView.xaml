@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="ChatWebSocketConTpc.Views.EspacioView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChatWebSocketConTpc.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <DockPanel>
+        <TextBlock Background="#128c7e" Width="800" Padding="6"  DockPanel.Dock="Top" Foreground="White" FontSize="25">WhatsApp</TextBlock>
+        <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+            <WrapPanel.Style>
+                <Style TargetType="WrapPanel">
+                    <Setter Property="Visibility" Value="Visible"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Servidor}" Value="True">
+                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </WrapPanel.Style>
+            <WrapPanel>
+                <TextBox Width="730" MinHeight="50" Margin="0,0,0,10" TextWrapping="Wrap" Background="#ece5dd" Padding="5" Foreground="Black" FontSize="15"  Text="{Binding MensajeDeTextoEnviar}"/>
+
+                <Button MinHeight="40" Height="40" MinWidth="40"  Background="#075e54" Foreground="White" Command="{Binding EnviarCommand}" Padding="5" Margin="5,0,0,10" >✔</Button>
+            </WrapPanel>
+          
+        </WrapPanel>
+        <TextBlock Text="{Binding Error}" DockPanel.Dock="Bottom" Foreground="Red" TextAlignment="Center" Margin="10"></TextBlock>
+
+        <Border  Width="800" Height="400"   BorderBrush="Black">
+            <ItemsControl ItemsSource="{Binding Mensajes}">
+
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Width="800" Margin="5" >
+
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Image Height="20" Width="20" Source="https://clinicaangeleslm.com/v2/images/images/PNG/user.png"></Image>
+                            <TextBlock HorizontalAlignment="Left"><Run FontSize="15" FontWeight="Bold" Text="{Binding Nombre}"></Run>: <Run FontSize="15" Text="{Binding MensajeDeTexto}"></Run></TextBlock>
+                        </WrapPanel>
+                        <!--<TextBlock  TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10">
+                        <Run Text="{Binding Nombre}"></Run><LineBreak></LineBreak>
+                                 <Run Text="{Binding IP}"></Run><LineBreak></LineBreak>
+                                 <Run Text="{Binding MensajeDeTexto}"></Run><LineBreak></LineBreak>
+                        </TextBlock>-->
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+    </DockPanel>
+
+</UserControl>

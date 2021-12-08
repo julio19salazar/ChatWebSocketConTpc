@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="ChatWebSocketConTpc.Views.SeleccionarRolView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChatWebSocketConTpc.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel >
+
+        <StackPanel.Resources>
+            <Style TargetType="RadioButton">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="20"></Setter>
+            </Style>
+        </StackPanel.Resources>
+        <Label Background="#128c7e" Width="800" Padding="5"   Foreground="White" FontSize="25" >WhatsApp PC</Label>
+        <TextBlock HorizontalAlignment="Center" FontSize="25" Padding="5">Seleccione el modo en el que desea iniciar la aplicación</TextBlock>
+        <RadioButton IsChecked="{Binding Rol}" Content="Iniciar como servidor"></RadioButton>
+        <RadioButton x:Name="cliente" >Conectarme a un servidor</RadioButton>
+        <TextBlock HorizontalAlignment="Center" Margin="20,0,0,0">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=cliente, Path=IsChecked}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+            
+            IP del servidor: <TextBox Width="150" Text="{Binding IP}"></TextBox>
+
+        </TextBlock>
+
+        <TextBlock Text="{Binding Errores}" Foreground="Red" TextAlignment="Center" FontSize="12" Margin="10"></TextBlock>
+
+        <Button Command="{Binding IniciarCommand}" Margin="0,20,0,0" Width="auto" HorizontalAlignment="Center" FontSize="20" Padding="50, 10">✔</Button>
+    </StackPanel>
+</UserControl>
